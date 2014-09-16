@@ -1,0 +1,17 @@
+{
+    "name": "hkulekci/basiclibs",
+    "description": "Basic Libraries for BasicMVC and Others",
+    "license": "GPL-3.0",
+    "authors": [{
+        "name": "Haydar Kulekci",
+        "email": "haydarkulekci@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "BasicLib": "src/"
+        }
+    }
+}
