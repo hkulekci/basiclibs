@@ -1,5 +1,5 @@
 <?php
-namespace BasicLib;
+namespace BasicLibs;
 /**
  * Document
  *
