@@ -49,10 +49,13 @@ class Language
      */
     public function setLanguage($language)
     {
-        if (is_dir($language_directory . $language) &&
-            file_exists($language_directory . $language)) {
+        if (is_dir($this->language_directory . $language) &&
+                file_exists($this->language_directory . $language)) {
+
             $this->current_language = $language;
+            $this->load("common.php");
             return true;
+
         }
         return false;
     }
@@ -78,20 +81,9 @@ class Language
     {
         if (is_dir($directory) && file_exists($directory)) {
             $this->language_directory = $directory;
-
-            $common_include = include($directory . $this->directory_seperator . "common.php");
-            if (is_file($common_include)) {
-
-                if (is_array($common_include)) {
-                    $this->language_params = array_merge($this->language_params, $common_include);
-                    return true;
-                }
-            }
-
-        } else {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -112,7 +104,9 @@ class Language
      */
     public function load($file)
     {
-        $file_path = $language_directory . $language . $this->directory_seperator . $file;
+        $file_path = $this->language_directory . $this->current_language .
+            $this->directory_seperator . $file;
+
         if (is_file($file_path) && file_exists($file_path)) {
             $include = include($file_path);
             if (is_array($include)) {
