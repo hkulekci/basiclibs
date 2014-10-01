@@ -52,7 +52,7 @@ class Curl
      */
     public function get($url, $data = array())
     {
-        $this->buildURL($url, $data);
+        $url = $this->buildURL($url, $data);
         $resp = "";
         try {
             $curl = curl_init();
@@ -63,13 +63,12 @@ class Curl
             ));
 
             $resp = curl_exec($curl);
+            if (curl_errno($curl)) {
+                return json_encode(array("error" => "Curl Error : " . curl_errno($curl)));
+            }
             curl_close($curl);
         } catch (Exception $e){
             return json_encode(array('error' => "Curl Exception Error"));
-        }
-
-        if(!$resp){
-            return json_encode(array("error" => "Curl Result Error"));
         }
         return $resp;
     }
@@ -96,12 +95,12 @@ class Curl
             ));
 
             $resp = curl_exec($curl);
+            if (curl_errno($curl)) {
+                return json_encode(array("error" => "Curl Error : " . curl_errno($curl)));
+            }
             curl_close($curl);
         } catch (Exception $e){
             return json_encode(array('error' => "Curl Exception Error"));
-        }
-        if(!$resp){
-            return json_encode(array("error" => "Curl Result Error"));
         }
         return $resp;
     }
