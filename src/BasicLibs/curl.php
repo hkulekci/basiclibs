@@ -112,7 +112,7 @@ class Curl
      *   @param  array      $data
      *   @param  string
      */
-    private function buildURL($url, $data = array())
+    public function buildURL($url, $data = array())
     {
         return $url . (empty($data) ? '' : '?' . http_build_query($data));
     }
