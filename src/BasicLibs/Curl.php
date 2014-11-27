@@ -91,7 +91,7 @@ class Curl
                 CURLOPT_USERAGENT => $this->useragent,
                 CURLOPT_POST => 1,
                 CURLOPT_ENCODING => "UTF-8",
-                CURLOPT_POSTFIELDS => http_build_query($data)
+                CURLOPT_POSTFIELDS => $data
             ));
 
             $resp = curl_exec($curl);
